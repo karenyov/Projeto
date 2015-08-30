@@ -73,7 +73,7 @@
 			<hr>
 			<h2>
 				Eventos acontecendo na sua região  &nbsp;
-				<a href="#"><img class="img-circle" src="http://oi61.tinypic.com/2mnrex3.jpg"/></a>
+				<a href="<%= request.getContextPath() %>/event"><img class="img-circle" src="http://oi61.tinypic.com/2mnrex3.jpg"/></a>
 			</h2>
 			<br/>
 			<hr>

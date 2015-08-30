@@ -12,13 +12,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "PROJETO_USER")
 public class User {
 	private int id;
+	
 	private String name;
+	
+	@Size(min = 6, max = 15, message = "A senha deve ter entre 6 e 15 dígitos!")
 	private String password;
+	
+	@Pattern(regexp = "^[\\w\\-]+(\\.[\\w\\-]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$", message="E-mail com formato incorreto!")
 	private String email;
 
 	@Id

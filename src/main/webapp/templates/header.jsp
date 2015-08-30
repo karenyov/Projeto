@@ -17,7 +17,16 @@
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <script src="resources/js/jquery-1.11.3.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/validarCampos.js"></script>
+<script src="resources/js/javascriptMap.js"></script>
 <link rel="stylesheet" href="resources/css/style.css">
+
+<!-- META TAG PARA DEVICES COM IOS -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=1.0;">
+ 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=pt-BR"></script>
+	
 
 
 
