@@ -15,10 +15,19 @@
 		<div class="container">
 			<div class="row">
 				<div id="conteudo" class="col-md-12">
+					<div class="input-group">	
+						<input type="text" class="form-control" placeholder="Procurar por...">
+							  			
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"> OK</button>
+						</span>
+					</div><br/>
+					
 					<div class="panel panel-default">
 					  <!-- Default panel contents -->
+					  					  
 					  <div id="corPadrao" class="panel-heading">Usuários Cadastrados</div>
-					
+
 					  <!-- Table -->
 					  <table class="table">
 					  	<thead>
@@ -26,6 +35,7 @@
 					  			<th>#</th>
 					  			<th>Nome</th>
 					  			<th>Email</th>
+					  			<th>CPF</th>
 					  		</tr>
 					  	</thead>
 					  	<tbody>
@@ -34,6 +44,7 @@
 					        		<th scope="row">${status.index + 1}</th>
 									<td>${user.name}</td>
 									<td>${user.email}</td>
+									<td>${user.cpf}</td>
 									<td>			
 										<table border="0">
 											<tr>

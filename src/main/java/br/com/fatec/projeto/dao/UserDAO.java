@@ -28,4 +28,6 @@ public interface UserDAO {
 	public void saveOrUpdate(User user);
 
 	public void remove(int id);
+	
+	//public User findByEmail(S id);
 }

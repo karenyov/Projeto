@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>Cadastro de Usuário</title>
-
+<script src="resources/js/validarCampos.js"></script>
 <%@ include file="/templates/header.jsp"%>
 </head>
 <body>
@@ -17,7 +17,7 @@
 			<div class="row">
 				<div id="conteudo" class="col-md-9">
 					<!-- div login -->
-					<div class="container droppedHover">
+					<div class="container droppedHover">	
 						<form:form action="saveUser" name="f" method="post" modelAttribute="user" commandName="user" class="form-signin" role="form">
 							<form:hidden path="id"/>
 							<h2 class="form-signin-heading" contenteditable="false">Cadastro</h2><br/>
@@ -25,9 +25,11 @@
 								Dados Pessoais
 							</label><br/>
 							<form:input path="name" class="form-control" placeholder="Nome Completo" required="true" autofocus="" contenteditable="false"/>
-							<!-- <input type="text" name="cpf" class="form-control" placeholder="CPF" required="" contenteditable="false">
 							
-							<label class="">
+							<form:input path="cpf" class="form-control" placeholder="CPF" required="true" autofocus="" contenteditable="false" />
+							<form:errors path="cpf" class="form-control alert-danger" role="alert" contenteditable="false"/><br/>
+							
+							<!-- <label class="">
 								Data de Nascimento
 							</label><br/>
 							<input type="date" class="form-control">-->
@@ -43,7 +45,6 @@
 							
 							<input type="password" name="passwordRepeat" class="form-control" placeholder="Confirme a senha" required="true" autofocus="" contenteditable="false" onchange="validarSenha()">
 							<div id="mostrarErroSenha">
-							
 							</div>							
 							<br/>
 							<button id="corPadrao" class="btn btn-lg btn-default btn-block" type="submit">Enviar</button><br/>

@@ -7,35 +7,45 @@
 <html>
 <head>
 <title>Event</title>
+
 <%@ include file="/templates/header.jsp"%>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:600" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/mapa.js"></script>
+<script type="text/javascript" src="resources/js/jquery-ui.custom.min.js"></script>
+
 </head>
-	<body onLoad="GeoLocalizacao();">
+	<body>
 		<%@ include file="/templates/menu.jsp"%>
 			<div class="container">
 				<div class="row">
 					<div id="conteudo" class="col-md-9">
+						<form class="form" role="form" method="post" action="<%= request.getContextPath() %>/event" >
+							<div class="input-group">	
+								<input type="text" class="form-control" id="txtEndereco" name="txtEndereco" placeholder="Procurar por...">
+									  			
+								<span class="input-group-btn">
+									<button class="btn btn-default" id="btnEndereco" name="btnEndereco" type="button">Procurar</button>
+								</span>
+							</div>
+						</form><br/>
+						
+						<input type="hidden" id="txtLatitude" name="txtLatitude" />
+                    	<input type="hidden" id="txtLongitude" name="txtLongitude" />
+					
+					
 						<!-- div conteudo -->
-						<div id="geo">
+						<div id="mapa">
 							<p id="status">Procurando sua localização...</p>
 						</div>
-						<div id="textDescr">
+						<!-- <div id="textDescr">
 							<label>Sua localização:</label>
 							<input type="text" id="Descr">
-						</div>
+						</div>-->
 					</div><!-- div conteudo -->
-
 					<!-- Sidebar -->
 					<div id="sidebar" class="col-md-3">
-						<div class="widget">
-							<h3>Newsletter</h3>
-							<form class="form" role="form">
-								<div class="form-group">
-									<label class="sr-only" for="exampleInputEmail2">Entre com seu email</label>
-									<input type="email" class="form-control" id="exampleInputEmail2" placeholder="Entre com seu email">
-								</div>
-								<button type="submit" class="btn btn-success">Cadastrar</button>
-							</form>
-						</div>
 						<div class="widget">
 							<h3>Parceiros</h3>
 							<ul>
@@ -48,7 +58,7 @@
 						</div>
 					</div>
 
-				</div><!-- div row container -->
+				</div><!-- div row container --><br/>
 			</div><!-- div container -->
 		<%@ include file="/templates/footer.jsp"%>	
 	</body>

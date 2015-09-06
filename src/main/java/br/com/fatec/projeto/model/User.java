@@ -18,6 +18,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "PROJETO_USER")
 public class User {
+	
 	private int id;
 	
 	private String name;
@@ -27,6 +28,9 @@ public class User {
 	
 	@Pattern(regexp = "^[\\w\\-]+(\\.[\\w\\-]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$", message="E-mail com formato incorreto!")
 	private String email;
+	
+	@Size(max = 11, message = "O CPF tem 11 dígitos!")
+	private String cpf;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,4 +67,11 @@ public class User {
 		this.email = email;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 }

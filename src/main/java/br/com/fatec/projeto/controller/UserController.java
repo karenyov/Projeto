@@ -36,6 +36,12 @@ public class UserController {
 		ModelAndView model = new ModelAndView("Login/login");
 		return model;
 	}
+	
+	@RequestMapping("/formOk")
+	public ModelAndView formOk() throws Exception {
+		ModelAndView model = new ModelAndView("User/formOk");
+		return model;
+	}
 
 	@RequestMapping("/listUser")
 	public ModelAndView listUser() throws Exception {
@@ -75,6 +81,6 @@ public class UserController {
 			return new ModelAndView("User/form");
 		}
 		userDao.saveOrUpdate(user);
-		return new ModelAndView("redirect:/listUser");
+		return new ModelAndView("redirect:/formOk");
 	}
 }

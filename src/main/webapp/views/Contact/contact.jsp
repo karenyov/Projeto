@@ -27,7 +27,7 @@
 							<div class="form-group">
 								<textarea class="form-control" name="message" rows="5" id="comment" placeholder="Mensagem"></textarea>
 							</div>
-							<button id="corPadrao" class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button><br/>
+							<button id="corPadrao" class="btn btn-lg btn-default btn-block" type="submit">Enviar</button><br/>
 						</form>
 					</div><!-- fim div login -->
 				</div><!-- div conteudo -->

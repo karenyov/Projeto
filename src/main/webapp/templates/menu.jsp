@@ -7,13 +7,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Meu Site</a>
+					<a class="navbar-brand" href="/">Meu Site</a>
 				</div>
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="<%= request.getContextPath() %>/">Home</a></li>
+						<li><a href="<%= request.getContextPath() %>/"><b>H</b>ome</a></li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>C</b>ategorias<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Jogos</a></li>
 								<li class="divider"></li>
@@ -22,10 +22,10 @@
 								<li><a href="#">Vídeo aulas</a></li>
 							</ul>
 						</li>
-						<li><a href="#">Empresa</a></li>
-						<li><a href="<%= request.getContextPath() %>/contact">Contato</a></li>
+						<li><a href="#"><b>E</b>mpresa</a></li>
+						<li><a href="<%= request.getContextPath() %>/contact"><b>C</b>ontato</a></li>
 						<li>&nbsp;&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;</li>
-						<li><a href="<%= request.getContextPath() %>/loginUser">Login</a></li>
+						<li><a href="<%= request.getContextPath() %>/loginUser"><b>L</b>ogin</a></li>
 					</ul>
 					<!--<form class="navbar-form navbar-right" role="search" action="C:/Users/Karen/Desktop/TG/Layout/tutwd-bootstrap-layout1/html/login/login.html">
 						<button type="submit" class="btn btn-success">Entrar</button>
