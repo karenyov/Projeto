@@ -28,25 +28,20 @@
 								<span class="input-group-btn">
 									<button class="btn btn-default" id="btnEndereco" name="btnEndereco" type="button">Procurar</button>
 								</span>
-							</div>
-						</form><br/>
+							</div><br/>
+							<input type="hidden" id="txtLatitude" name="txtLatitude" />
+                    		<input type="hidden" id="txtLongitude" name="txtLongitude" />
 						
-						<input type="hidden" id="txtLatitude" name="txtLatitude" />
-                    	<input type="hidden" id="txtLongitude" name="txtLongitude" />
-					
-					
 						<!-- div conteudo -->
 						<div id="mapa">
 							<p id="status">Procurando sua localização...</p>
 						</div>
-						<!-- <div id="textDescr">
-							<label>Sua localização:</label>
-							<input type="text" id="Descr">
-						</div>-->
+						</form><br/>
 					</div><!-- div conteudo -->
 					<!-- Sidebar -->
 					<div id="sidebar" class="col-md-3">
 						<div class="widget">
+							<br/><p/><br/><p/>
 							<h3>Parceiros</h3>
 							<ul>
 								<li><a href="">Parceiro 1</a></li>
