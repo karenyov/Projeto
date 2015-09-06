@@ -24,7 +24,7 @@ function locSucesso(position) {
 	
 	marker = new google.maps.Marker({
 		map: map,
-		draggable: true,
+		draggable: false,
 	});
 	marker.setPosition(latlngGeo);
 }
@@ -49,7 +49,7 @@ function initialize() {
 	geocoder = new google.maps.Geocoder();
 	marker = new google.maps.Marker({
 		map: map,
-		draggable: true,
+		draggable: false,
 	});
 	marker.setPosition(latlng);
 }
@@ -80,6 +80,9 @@ $(document).ready(function () {
 	$("#btnEndereco").click(function() {
 		if($(this).val() != "")
 			carregarNoMapa($("#txtEndereco").val());
+		else{
+			GeoLocalizacao();
+		}
 	})
 	
 	$("#txtEndereco").blur(function() {
