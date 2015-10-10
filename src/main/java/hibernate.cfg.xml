@@ -7,5 +7,8 @@
     <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="show_sql">true</property>  
     <mapping class="br.com.fatec.projeto.model.User"/>
+    <mapping class="br.com.fatec.projeto.model.Event"/>
+    <mapping class="br.com.fatec.projeto.model.Category"/>
   </session-factory>
 </hibernate-configuration>
+

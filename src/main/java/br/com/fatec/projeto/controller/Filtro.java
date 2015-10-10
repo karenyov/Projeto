@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class Filtro
  */
-@WebFilter(urlPatterns = { "/editUser", "" })
+@WebFilter(urlPatterns = { "/editUser", "/newCategory", "/saveCategory", "" })
 public class Filtro implements Filter {
 
 	/**

@@ -43,6 +43,8 @@
 	<filter-mapping>
 		<filter-name>Filtro</filter-name>
 		<url-pattern>/editUser</url-pattern>
+		<url-pattern>/newCategory</url-pattern>
+		<url-pattern>/editCategory</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>

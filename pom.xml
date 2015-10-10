@@ -13,7 +13,6 @@
 	</properties>
 
 	<dependencies>
-	
 		<!-- Hibernate Validator 5.0.1.Final -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
