@@ -36,7 +36,22 @@ public class UserController {
 		ModelAndView model = new ModelAndView("User/formOk");
 		return model;
 	}
+	
+	@RequestMapping("/homeUser")
+	public ModelAndView homeUser() throws Exception {
+		ModelAndView model = new ModelAndView("User/home");
+		return model;
+	}
 
+	@RequestMapping(value = "/detalhesUser", method = RequestMethod.GET)
+	public ModelAndView detalhesUser(HttpServletRequest request) {
+		int userId = Integer.parseInt(request.getParameter("id"));
+		User user = userDao.findById(userId);
+		ModelAndView model = new ModelAndView("User/detalhes");
+		model.addObject("user", user);
+		return model;
+	}
+	
 	@RequestMapping("/listUser")
 	public ModelAndView listUser() throws Exception {
 		List<User> listUsers = userDao.findAll();

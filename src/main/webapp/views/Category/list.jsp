@@ -39,16 +39,16 @@
 					  		</tr>
 					  	</thead>
 					  	<tbody>
-					  		<c:forEach var="user" items="${categoryList}" varStatus="status">
+					  		<c:forEach var="category" items="${categoryList}" varStatus="status">
 					        	<tr>
 					        		<th scope="row">${status.index + 1}</th>
-									<td>${user.description}</td>
+									<td>${category.description}</td>
 									<td>			
 										<table border="0">
 											<tr>
 												<td>
 													<form action="<%= request.getContextPath() %>/editCategory">
-														<input type="hidden" name="id" value="${user.id}">
+														<input type="hidden" name="id" value="${category.id}">
 														<button type="submit" class="btn btn-primary">
 														<span class="glyphicon glyphicon-pencil"></span>
 														</button>
@@ -57,7 +57,7 @@
 												<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 												<td>
 													<form action="<%= request.getContextPath() %>/deleteCategory">
-														<input type="hidden" name="id" value="${user.id}">
+														<input type="hidden" name="id" value="${category.id}">
 														<button type="submit" class="btn btn-danger">
 														<span class="glyphicon glyphicon-trash"></span>
 														</button>
@@ -66,7 +66,7 @@
 												<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 												<td>
 													<form action="<%= request.getContextPath() %>/detalhesCategory">
-														<input type="hidden" name="id" value="${user.id}">
+														<input type="hidden" name="id" value="${category.id}">
 														<button type="submit" class="btn btn-info">
 														<span class="glyphicon glyphicon-search"></span>
 														</button>

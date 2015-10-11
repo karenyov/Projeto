@@ -34,11 +34,11 @@
 					  <p><a href="#" >Verificar caixa de email </a></p>
 					</div><!-- /.col-lg-4 -->
 					<div class="col-lg-4">
-					  <a href="<%= request.getContextPath() %>/listUser" >
-					  	<img class="img-circle" src="resources/img/icon/icon-compartilhar.png" alt="Generic placeholder image" width="140" height="140">
+					  <a href="<%= request.getContextPath() %>/homeUser" >
+					  	<img class="img-circle" src="resources/img/icon/icon-user.png" alt="Generic placeholder image" width="140" height="140">
 					  </a>
 					  <h2>Usuários</h2>
-					  <p><a href="<%= request.getContextPath() %>/listUser" >Consultar Usuários</a></p>
+					  <p><a href="<%= request.getContextPath() %>/homeUser" >Consultar Usuários</a></p>
 					</div><!-- /.col-lg-4 -->
 				  </div><!-- /.row -->
 				  <!-- Three columns of text below the carousel -->

@@ -17,6 +17,7 @@
 			<div class="row">
 				<div id="conteudo" class="col-md-9">
 					<!-- div login -->
+					<p><a href="<%= request.getContextPath() %>/loginUser" >&laquo; Voltar </a></p><br/>
 					<div class="container droppedHover">	
 						<form:form action="saveUser" name="f" method="post" modelAttribute="user" commandName="user" class="form-signin" role="form">
 							<form:hidden path="id"/>
