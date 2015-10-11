@@ -6,7 +6,7 @@
 
 <html>
 <head>
-<title>Usuário</title>
+<title>Atualização de Cadastro</title>
 <script src="resources/js/validarCampos.js"></script>
 <%@ include file="/templates/header.jsp"%>
 </head>
@@ -19,7 +19,7 @@
 					<!-- div login -->
 					<div class="container droppedHover">	
 						<form:form action="saveUser" name="f" method="post" modelAttribute="user" commandName="user" class="form-signin" role="form">
-							<form:hidden path="id"/>
+							<form:input  path="id"/>
 							<h2 class="form-signin-heading" contenteditable="false">Cadastro</h2><br/>
 							<label class="">
 								Dados Pessoais
@@ -29,10 +29,10 @@
 							<form:input path="cpf" class="form-control" placeholder="CPF" required="true" autofocus="" contenteditable="false" />
 							<form:errors path="cpf" class="form-control alert-danger" role="alert" contenteditable="false"/><br/>
 							
-							<label class="">
+							<!-- <label class="">
 								Data de Nascimento
 							</label><br/>
-							<form:input type="date" path="data_nascimento" class="form-control"/>
+							<input type="date" class="form-control">-->
 							<br/>
 							<label class="">
 								Dados de Login

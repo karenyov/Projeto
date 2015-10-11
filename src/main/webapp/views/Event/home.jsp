@@ -32,19 +32,19 @@
 							<input type="hidden" id="txtLatitude" name="txtLatitude" />
                     		<input type="hidden" id="txtLongitude" name="txtLongitude" />
 						
-						<!-- div conteudo -->
-						<div id="mapa">
-							<p id="status">Procurando sua localização...</p>
-						</div>
+							<!-- div conteudo -->
+							<div id="mapa">
+								<p id="status">Procurando sua localização...</p>
+							</div>
 						</form><br/>
 					</div><!-- div conteudo -->
 					<!-- Sidebar -->
 					<div id="sidebar" class="col-md-3">
 						<div class="widget">
 							<br/><p/><br/><p/>
-							<h3>Parceiros</h3>
+							<h3>Evento</h3>
 							<ul>
-								<li><a href="">Parceiro 1</a></li>
+								<li><a href="<%= request.getContextPath() %>/eventMap">Criar evento</a></li>
 								<li><a href="">Parceiro 2</a></li>
 								<li><a href="">Parceiro 3</a></li>
 								<li><a href="">Parceiro 4</a></li>

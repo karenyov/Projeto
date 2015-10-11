@@ -31,12 +31,6 @@ public class UserController {
 	@Autowired
 	private UserDAO userDao;
 
-	@RequestMapping("/loginUser")
-	public ModelAndView loginUser() throws Exception {
-		ModelAndView model = new ModelAndView("Login/login");
-		return model;
-	}
-	
 	@RequestMapping("/formOk")
 	public ModelAndView formOk() throws Exception {
 		ModelAndView model = new ModelAndView("User/formOk");
@@ -76,9 +70,18 @@ public class UserController {
 
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
 	public ModelAndView saveUser(@Valid @ModelAttribute("user") User user, BindingResult result) {
-
 		if (result.hasErrors()) {
+			if (userDao.findEmail(user.getEmail()) == true) {
+				ModelAndView model = new ModelAndView("User/form");
+				model.addObject("erroEmail", "sim");
+				return model;
+			}
 			return new ModelAndView("User/form");
+		}
+		if (userDao.findEmail(user.getEmail()) == true) {
+			ModelAndView model = new ModelAndView("User/form");
+			model.addObject("erroEmail", "sim");
+			return model;
 		}
 		userDao.saveOrUpdate(user);
 		return new ModelAndView("redirect:/formOk");

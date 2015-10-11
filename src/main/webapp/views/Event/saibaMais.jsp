@@ -6,20 +6,23 @@
 
 <html>
 <head>
-<title>Cadastro de Usuário</title>
+<title>Eventos</title>
 <%@ include file="/templates/header.jsp"%>
 </head>
-<body>
-	<%@ include file="/templates/menu.jsp"%>
+	<body>
+		<%@ include file="/templates/menu.jsp"%>
 		<!-- SEU CONTEÚDO -->
 		<div class="container">
-			<div class="row">	
-				<div class="alert alert-success" role="alert">
-					Dados enviados com sucesso!
-				</div>
-				<b>Realizar login </b><a href="<%= request.getContextPath() %>/loginUser">Clique aqui!</a>
+			<div class="row">
+				<div id="conteudo" class="col-md-9">	
+					
+					
+					
+					
+					
+				</div><!-- div conteudo -->
 			</div><!-- div row container -->
 		</div><!-- div container --><br/>
-	<%@ include file="/templates/footer.jsp"%>
-</body>
+		<%@ include file="/templates/footer.jsp"%>	
+	</body>
 </html>

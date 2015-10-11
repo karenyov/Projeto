@@ -6,7 +6,8 @@
 
 <html>
 <head>
-<title>Cadastro de Usuário</title>
+<title>Eventos</title>
+
 <%@ include file="/templates/header.jsp"%>
 </head>
 <body>
@@ -17,7 +18,7 @@
 				<div class="alert alert-success" role="alert">
 					Dados enviados com sucesso!
 				</div>
-				<b>Realizar login </b><a href="<%= request.getContextPath() %>/loginUser">Clique aqui!</a>
+				<p><a href="<%= request.getContextPath() %>/loginHome" >&laquo; Voltar </a></p>
 			</div><!-- div row container -->
 		</div><!-- div container --><br/>
 	<%@ include file="/templates/footer.jsp"%>

@@ -24,9 +24,34 @@ function locSucesso(position) {
 	
 	marker = new google.maps.Marker({
 		map: map,
-		draggable: false,
+		draggable: true,
 	});
 	marker.setPosition(latlngGeo);
+	
+	//google.maps.event.addListener(marker, 'drag', function () {
+		geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[0]) {  
+					$('#txtEndereco').val(results[0].formatted_address);
+					$('#txtLatitude').val(marker.getPosition().lat());
+					$('#txtLongitude').val(marker.getPosition().lng());
+				}
+			}
+		});
+	//});
+	
+	//atualizar o endereço ao movimentar o macador
+	google.maps.event.addListener(marker, 'drag', function () {
+		geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[0]) {  
+					$('#txtEndereco').val(results[0].formatted_address);
+					$('#txtLatitude').val(marker.getPosition().lat());
+					$('#txtLongitude').val(marker.getPosition().lng());
+				}
+			}
+		});
+	});
 }
  
 function erro(error) {//se houver erro na geolocalização mostrar na tela
@@ -34,7 +59,6 @@ function erro(error) {//se houver erro na geolocalização mostrar na tela
     $('#status').css('background-color','#F00').css('padding','5px');
 }
 /*fim código de geolocalização*/
-
 
 /*início código de busca apartir do endereço pesquisado*/
 function initialize() {
@@ -46,10 +70,12 @@ function initialize() {
 	};
 	
 	map = new google.maps.Map(document.getElementById("mapa"), options);
+	
 	geocoder = new google.maps.Geocoder();
+	
 	marker = new google.maps.Marker({
 		map: map,
-		draggable: false,
+		draggable: true,
 	});
 	marker.setPosition(latlng);
 }
@@ -78,18 +104,36 @@ $(document).ready(function () {
 	}
 	
 	$("#btnEndereco").click(function() {
-		if($(this).val() != "")
+		if($(this).val() != ""){
 			carregarNoMapa($("#txtEndereco").val());
+		}
 		else{
 			GeoLocalizacao();
 		}
 	})
 	
 	$("#txtEndereco").blur(function() {
-		if($(this).val() != "")
+		if($(this).val() != ""){
 			carregarNoMapa($(this).val());
+		}
+		else{
+			GeoLocalizacao();
+		}
 	})
 	
+	//google.maps.event.addListener(marker, 'drag', function () {
+		geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[0]) {  
+					$('#txtEndereco').val(results[0].formatted_address);
+					$('#txtLatitude').val(marker.getPosition().lat());
+					$('#txtLongitude').val(marker.getPosition().lng());
+				}
+			}
+		});
+	//});
+	
+	//atualizar o endereço ao movimentar o macador
 	google.maps.event.addListener(marker, 'drag', function () {
 		geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
@@ -125,13 +169,16 @@ $(document).ready(function () {
 		}
 	});
 	
-	$("form").submit(function(event) {
+	
+	
+	/*$("form").submit(function(event) {
 		event.preventDefault();
 		var endereco = $("#txtEndereco").val();
 		var latitude = $("#txtLatitude").val();
 		var longitude = $("#txtLongitude").val();
 		
 		alert("Endereço: " + endereco + "\nLatitude: " + latitude + "\nLongitude: " + longitude);
-	});
+	});*/
 });
-/*fim código de busca apartir do endereço pesquisado*/
+
+/*fim código de busca apartir do endereço pesquisado */

@@ -6,7 +6,7 @@
 
 <html>
 <head>
-<title>Cadastro de Usuário</title>
+<title>Categorias</title>
 <script src="resources/js/validarCampos.js"></script>
 <%@ include file="/templates/header.jsp"%>
 </head>
@@ -20,7 +20,7 @@
 					<div class="container droppedHover">	
 						<form:form action="saveCategory" name="f" method="post" modelAttribute="category" commandName="category" class="form-signin" role="form">
 							<form:hidden path="id"/>
-							<h2 class="form-signin-heading" contenteditable="false">Cadastro de Categorias</h2><br/>
+							<h2 class="form-signin-heading" contenteditable="false">Formulário de Categorias</h2><br/>
 							<label class="">
 								Dados Pessoais
 							</label><br/>

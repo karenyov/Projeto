@@ -15,6 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div id="conteudo" class="col-md-12">
+				<p><a href="<%= request.getContextPath() %>/loginHome" >&laquo; Voltar </a></p><br/>
 					<div class="input-group">	
 						<input type="text" class="form-control" placeholder="Procurar por...">
 							  			
