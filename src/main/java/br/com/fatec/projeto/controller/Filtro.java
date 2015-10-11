@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebFilter(urlPatterns = { "/loginHome",
 		"/deleteUser", "/listUser", "/editUser", 
-		"/newCategory", "/editCategory", "/deleteCategory", "/listCategory", "/formOkCategory",
+		"/newCategory", "/editCategory", "/deleteCategory", "/listCategory", "/formOkCategory", "/homeCategory", "/detalhesCategory",
 		"/eventMap","/newEvent", "/saveEvent",
 		"" })
 public class Filtro implements Filter {

@@ -34,6 +34,12 @@ public class CategoryController {
 		return model;
 	}
 	
+	@RequestMapping("/homeCategory")
+	public ModelAndView homeCategory() throws Exception {
+		ModelAndView model = new ModelAndView("Category/home");
+		return model;
+	}
+	
 	@RequestMapping(value = "/newCategory", method = RequestMethod.GET)
 	public ModelAndView newCategory() {
 		ModelAndView model = new ModelAndView("Category/form");
@@ -58,6 +64,15 @@ public class CategoryController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/detalhesCategory", method = RequestMethod.GET)
+	public ModelAndView detalhesCategory(HttpServletRequest request) {
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		Category category = categoryDao.findById(categoryId);
+		ModelAndView model = new ModelAndView("Category/detalhes");
+		model.addObject("category", category);
+		return model;
+	}
+	
 	@RequestMapping(value = "/deleteCategory", method = RequestMethod.GET)
 	public ModelAndView deleteCategory(HttpServletRequest request) {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
@@ -67,6 +82,13 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/saveCategory", method = RequestMethod.POST)
 	public ModelAndView saveCategory(@Valid @ModelAttribute("category") Category category, BindingResult result) {
+		
+		if (categoryDao.findCategory(category.getDescription()) == true) {
+			ModelAndView model = new ModelAndView("Category/form");
+			model.addObject("erroCategory", "sim");
+			return model;
+		}
+		
 		categoryDao.saveOrUpdate(category);
 		return new ModelAndView("redirect:/formOkCategory");
 	}

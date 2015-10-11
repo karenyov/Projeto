@@ -15,6 +15,8 @@
 		<div class="container">
 			<div class="row">
 				<div id="conteudo" class="col-md-12">
+					<p><a href="<%= request.getContextPath() %>/homeCategory" >&laquo; Voltar </a></p><br/>
+					<h2>Categorias</h2><br/>
 					<div class="input-group">	
 						<input type="text" class="form-control" placeholder="Procurar por...">
 							  			
@@ -58,6 +60,15 @@
 														<input type="hidden" name="id" value="${user.id}">
 														<button type="submit" class="btn btn-danger">
 														<span class="glyphicon glyphicon-trash"></span>
+														</button>
+													</form>
+												</td>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+												<td>
+													<form action="<%= request.getContextPath() %>/detalhesCategory">
+														<input type="hidden" name="id" value="${user.id}">
+														<button type="submit" class="btn btn-info">
+														<span class="glyphicon glyphicon-search"></span>
 														</button>
 													</form>
 												</td>

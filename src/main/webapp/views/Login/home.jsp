@@ -46,11 +46,11 @@
 				  
 				  <div class="row text-center">
 					<div class="col-lg-4">
-					  <a href="" >
-					  	<img class="img-circle" src="resources/img/icon/icon-cadastro.png" alt="Generic placeholder image" width="140" height="140">
+					  <a href="<%= request.getContextPath() %>/homeCategory" >
+					  	<img class="img-circle" src="resources/img/icon/icon-category.png" alt="Generic placeholder image" width="140" height="140">
 					  </a>
-					  <h2>Eventos</h2>
-					  <p><a href="<%= request.getContextPath() %>/loginConf" >Atualizar cadastro </a></p>
+					  <h2>Categorias</h2>
+					  <p><a href="<%= request.getContextPath() %>/homeCategory" >Gerenciar categorias de eventos </a></p>
 					</div><!-- /.col-lg-4 -->
 					<div class="col-lg-4">
 					  <a href="" >
