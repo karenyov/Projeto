@@ -13,23 +13,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
+ * @author Karen
+ *
+ *         11 de out de 2015
+ */
+
+/**
  * Servlet Filter implementation class Filtro
  */
-@WebFilter(urlPatterns = { "/editUser", "/newCategory", "/saveCategory", "" })
+@WebFilter(urlPatterns = { "/loginHome",
+		"/deleteUser", "/listUser", "/editUser", 
+		"/newCategory", "/editCategory", "/deleteCategory", "/listCategory", "/formOkCategory",
+		"/eventMap","/newEvent", "/saveEvent",
+		"" })
 public class Filtro implements Filter {
 
 	/**
 	 * Default constructor.
 	 */
 	public Filtro() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -37,7 +47,6 @@ public class Filtro implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
 		// place your code here
 
 		// pass the request along the filter chain
@@ -49,18 +58,16 @@ public class Filtro implements Filter {
 		Object user = session.getAttribute("usuarioLogado");
 
 		if (user == null) {
-			ht.getRequestDispatcher("login.jsp").forward(request, response);
+			ht.getRequestDispatcher("/loginUser").forward(request, response);
 		} else {
 			chain.doFilter(request, response);
 		}
-
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		
 	}
-
 }

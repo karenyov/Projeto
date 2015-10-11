@@ -4,7 +4,7 @@
 					<div id="linksImportantes" class="col-md-3">
 						<h4>Links Importantes</h4>
 						<ul>
-							<li><a href="#">Link1</a></li>
+							<li><a href="#">Criar Eventos</a></li>
 							<li><a href="#">Link2</a></li>
 							<li><a href="#">Link3</a></li>
 							<li><a href="#">Link4</a></li>
