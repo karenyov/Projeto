@@ -31,7 +31,7 @@
 							<label class="checkbox">
 								<input type="checkbox" value="remember-me" class="">Lembre-me</label><br/>
 							<button id="corPadrao" class="btn btn-lg btn-default btn-block" type="submit">Entrar</button><br/>
-							<a href="<%= request.getContextPath() %>/newUser">Novo por aqui? Cadastre-se</a>
+							<a href="<%= request.getContextPath() %>/termos">Novo por aqui? Cadastre-se</a>
 						</form:form>
 					</div><!-- fim div login -->
 				</div><!-- div conteudo -->

@@ -88,10 +88,12 @@
 		  <!-- Three columns of text below the carousel -->
 		  <div class="row text-center">
 			<div class="col-lg-4">
-			  <img class="img-circle" src="resources/img/icon/icon-chat.png" alt="Generic placeholder image" width="140" height="140">
+			  <a href="<%= request.getContextPath() %>/pessoas" >
+			  	<img class="img-circle" src="resources/img/icon/icon-chat.png" alt="Generic placeholder image" width="140" height="140">
+			  </a>
 			  <h2>Conheça outras pessoas</h2>
 			  <p>Participe de eventos de diversas regiões do Brasil e conheça pessoas de diferentes culturas.</p>
-			  <p><a href="#" >Ler mais &raquo;</a></p>
+			  <p><a href="<%= request.getContextPath() %>/pessoas" >Ler mais &raquo;</a></p>
 			</div><!-- /.col-lg-4 -->
 			<div class="col-lg-4">
 			  <img class="img-circle" src="resources/img/icon/icon-email.png" alt="Generic placeholder image" width="140" height="140">
@@ -130,7 +132,7 @@
 			  <p class="lead">O Brasil é um país que tem diversos lugares paradisíacos. Faça passeios convencionais por lugares bem diferentes.</p>
 			</div>
 			<div class="col-md-5 col-md-pull-7">
-			  <img class="featurette-image img-responsive center-block" src="http://1.bp.blogspot.com/-Am6MmLulsEU/Uc5TP_H4zRI/AAAAAAAAHGg/upztDk8CsiI/s400/New_Firefox_Logo.png" alt="Generic placeholder image">
+			  <img class="featurette-image img-responsive center-block" src="resources/img/imageHome/lugares.jpg" alt="Generic placeholder image">
 			</div>
 		  </div>
 
@@ -142,7 +144,7 @@
 			  <p class="lead">O Brasil é dividido em : Região Nordeste, Região Norte, Região Cento-Oeste, Região Sudeste, Região Sul, e cada uma tem sua peculiaridade. </p>
 			</div>
 			<div class="col-md-5">
-			  <img class="featurette-image img-responsive center-block" src="http://1.bp.blogspot.com/-Am6MmLulsEU/Uc5TP_H4zRI/AAAAAAAAHGg/upztDk8CsiI/s400/New_Firefox_Logo.png" alt="Generic placeholder image">
+			  <img class="featurette-image img-responsive center-block" src="resources/img/imageHome/culturas.jpg" alt="Generic placeholder image">
 			</div>
 		  </div>
 

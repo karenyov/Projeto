@@ -22,6 +22,12 @@ public class HomeController {
 		return model;
 	}
 	
+	@RequestMapping("/pessoas")
+	public ModelAndView pessoas() throws Exception {
+		ModelAndView model = new ModelAndView("Pessoas/home");
+		return model;
+	}
+	
 	@RequestMapping("/seguranca")
 	public ModelAndView seguranca() throws Exception {
 		ModelAndView model = new ModelAndView("Seguranca/home");

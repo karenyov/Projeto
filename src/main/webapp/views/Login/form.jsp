@@ -6,7 +6,7 @@
 
 <html>
 <head>
-<title>Atualização de Cadastro</title>
+<title>Formulário de login</title>
 <script src="resources/js/validarCampos.js"></script>
 <%@ include file="/templates/header.jsp"%>
 </head>

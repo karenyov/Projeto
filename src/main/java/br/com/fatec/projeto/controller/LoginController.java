@@ -33,6 +33,12 @@ public class LoginController {
 		return model;
 	}
 	
+	@RequestMapping("/termos")
+	public ModelAndView termos() throws Exception {
+		ModelAndView model = new ModelAndView("Login/termos");
+		return model;
+	}
+	
 	@RequestMapping(value = "/loginHome", method = RequestMethod.GET)
 	public ModelAndView loginHome() {
 		ModelAndView model = new ModelAndView("Login/home");
