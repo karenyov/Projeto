@@ -12,7 +12,7 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:600" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="resources/js/mapa.js"></script>
+<script type="text/javascript" src="resources/js/mapaEventos.js"></script>
 <script type="text/javascript" src="resources/js/jquery-ui.custom.min.js"></script>
 
 </head>
@@ -21,7 +21,21 @@
 			<div class="container">
 				<div class="row">
 					<div id="conteudo" class="col-md-9">
+					<%  				
+					
+					%> 
+						<div id="myDiv">
+							<h2>Click the button to change text</h2>
+						</div>
+					<button type="button" onclick="loadXMLDoc()">Change Content</button>
+						
+						${json }
+						
+						
+					
 						<form class="form" role="form" method="post" action="<%= request.getContextPath() %>/event" >
+							<input type="text" id="listaEventos" name="listaEventos" value="${eventList}" />
+							
 							<div class="input-group">	
 								<input type="text" class="form-control" id="txtEndereco" name="txtEndereco" placeholder="Procurar por...">
 									  			

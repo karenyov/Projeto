@@ -18,8 +18,8 @@
 					<p><a href="<%= request.getContextPath() %>/loginHome" >&laquo; Voltar </a></p><br/>
 					<h2>Categorias</h2><br/>	
 					<ul>
-						<li><a href="<%= request.getContextPath() %>/listCategory" > Listar Categorias </a></li>
-						<li><a href="<%= request.getContextPath() %>/newCategory" > Cadastrar nova Categoria </a></li>
+						<li><a href="<%= request.getContextPath() %>/listCategory" ><span class="glyphicon glyphicon-list"></span> Listar Categorias </a></li>
+						<li><a href="<%= request.getContextPath() %>/newCategory" > <span class="glyphicon glyphicon-plus"></span>Cadastrar nova Categoria </a></li>
 					</ul>			
 				</div><!-- div conteudo -->
 			</div><!-- div row container -->

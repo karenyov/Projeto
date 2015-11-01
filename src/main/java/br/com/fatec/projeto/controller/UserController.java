@@ -58,6 +58,7 @@ public class UserController {
 		ModelAndView model = new ModelAndView("User/list");
 		model.addObject("userList", listUsers);
 		return model;
+		
 	}
 
 	@RequestMapping(value = "/newUser", method = RequestMethod.GET)

@@ -25,8 +25,17 @@ function locSucesso(position) {
 	marker = new google.maps.Marker({
 		map: map,
 		draggable: true,
+		title:"Você está aqui!" //texto quando usuário passar mouse por cima do marcador
 	});
 	marker.setPosition(latlngGeo);
+	
+	var infowindow = new google.maps.InfoWindow({
+        content: 'Você está aqui!' //mostrar texto quando usuário clicar no marcador
+    });
+ 
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+    });
 	
 	//google.maps.event.addListener(marker, 'drag', function () {
 		geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {

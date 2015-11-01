@@ -21,6 +21,9 @@
 						<form:form action="saveEvent" name="f" method="post" modelAttribute="event" commandName="event" class="form-signin" role="form">
 							<form:hidden  path="id"/>
 							<form:hidden path="user_id" value="${usuarioLogado.id}"/>
+							<form:hidden path="latitude" value="${latitude}"/>
+							<form:hidden path="longitude" value="${longitude}"/>
+
 							<h2 class="form-signin-heading" contenteditable="false">Formulário de Eventos</h2><br/>
 							<label class="">
 								Dados do Evento

@@ -1,5 +1,7 @@
 package br.com.fatec.projeto.controller;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import br.com.fatec.projeto.dao.CategoryDAO;
 import br.com.fatec.projeto.dao.EventDAO;
 import br.com.fatec.projeto.model.Category;
@@ -31,16 +35,36 @@ public class EventController {
 
 	@Autowired
 	private EventDAO eventDao;
-	
+
 	@Autowired
 	private CategoryDAO categoryDao;
 
-	@RequestMapping("/event")
+	// escrever no JSON
+	private String saveListJSON(List<Event> eventos) {
+		Gson gson = new Gson();
+		// convertendo o objetov java para o formato JSON
+		String json = gson.toJson(eventos);
+		try {
+			// write converted json data to a file named "CountryGSON.json"
+			// resources/json/listEvent.json
+			FileWriter writer = new FileWriter("G:\\JSON_TG\\listEvent.json");
+			writer.write(json);
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+
+	@RequestMapping(value = "/event", method = RequestMethod.GET)
 	public ModelAndView event() throws Exception {
+
 		ModelAndView model = new ModelAndView("Event/home");
+
+		model.addObject("eventList", null);
 		return model;
 	}
-	
+
 	@RequestMapping("/eventMap")
 	public ModelAndView eventMap() throws Exception {
 		ModelAndView model = new ModelAndView("Event/formMap");
@@ -48,47 +72,58 @@ public class EventController {
 	}
 
 	@RequestMapping(value = "/newEvent", method = RequestMethod.GET)
-	public ModelAndView newEvent() throws Exception {
-		
+	public ModelAndView newEvent(HttpServletRequest request) throws Exception {
+		String latitude = request.getParameter("txtLatitude");
+		String longitude = request.getParameter("txtLongitude");
+
 		List<Category> listCategory = categoryDao.findAll();
-		
+
 		ModelAndView model = new ModelAndView("Event/form");
-		
+
 		model.addObject("event", new Event());
 		model.addObject("categoryList", listCategory);
-		
+
+		model.addObject("latitude", latitude);
+		model.addObject("longitude", longitude);
+
 		return model;
 	}
 
 	@RequestMapping(value = "/saveEvent", method = RequestMethod.POST)
-	public ModelAndView saveEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, HttpServletRequest request) {	
-		
-		//tratando os erros
+	public ModelAndView saveEvent(@Valid @ModelAttribute("event") Event event, BindingResult result,
+			HttpServletRequest request) {
+
+		// tratando os erros
 		String data_inicio = request.getParameter("data_inicio");
 		String data_termino = request.getParameter("data_termino");
-		
+
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		Date data_inicioDate = new Date();
 		Date data_terminoDate = new Date();
-		
+
 		try {
 			data_inicioDate = formato.parse(data_inicio);
 			data_terminoDate = formato.parse(data_termino);
-			
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		ModelAndView model = new ModelAndView("Event/form");
-		
+
 		if (data_inicioDate.after(data_terminoDate)) {
-			//Data de inicio deve vir antes da data de termino
+			// Data de inicio deve vir antes da data de termino
 			model.addObject("erroData1", "sim");
 			return model;
 		}
 
 		eventDao.saveOrUpdate(event);
+
+		// atualizando no JSON
+		List<Event> listEvent = eventDao.findAll();
+		saveListJSON(listEvent);
+
 		return new ModelAndView("redirect:/");
 	}
 

@@ -1,5 +1,7 @@
 package br.com.fatec.projeto.dao;
 
+import java.util.List;
+
 import br.com.fatec.projeto.model.Event;
 
 /**
@@ -11,5 +13,11 @@ import br.com.fatec.projeto.model.Event;
 public interface EventDAO {
 	
 	public void saveOrUpdate(Event event);
+	
+	public Event findById(int id);
+
+	public List<Event> findAll();
+
+	public void remove(int id);
 
 }
