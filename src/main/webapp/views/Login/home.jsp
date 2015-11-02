@@ -87,6 +87,24 @@
 					  <p><a href="#" >Ler mais</a></p>
 					</div><!-- /.col-lg-4 -->
 				  </div><!-- /.row -->
+				  
+				  
+				  <!-- Three columns of text below the carousel -->
+				  <div class="row text-center">
+					<div class="col-lg-4">
+					  <img class="img-circle" src="resources/img/icon/icon-cadastro.png" alt="Generic placeholder image" width="140" height="140">
+					  <h2>Meus Eventos</h2>
+					  <p>
+					  <form action="<%= request.getContextPath() %>/listEvent">
+						<input type="hidden" name="idUser" value="${usuarioLogado.id}">
+							<button type="submit" class="btn btn-default">
+							Meus Eventos
+						</button>
+					  </form>
+					  
+					  </p>
+					</div><!-- /.col-lg-4 -->
+				  </div><!-- /.row -->
 			</c:if>
 		</div><!-- /.container -->
 		

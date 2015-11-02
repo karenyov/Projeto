@@ -21,21 +21,14 @@
 			<div class="container">
 				<div class="row">
 					<div id="conteudo" class="col-md-9">
-					<%  				
 					
-					%> 
-						<div id="myDiv">
-							<h2>Click the button to change text</h2>
+						<div id="editar">
+						
 						</div>
-					<button type="button" onclick="loadXMLDoc()">Change Content</button>
-						
-						${json }
-						
-						
 					
 						<form class="form" role="form" method="post" action="<%= request.getContextPath() %>/event" >
-							<input type="text" id="listaEventos" name="listaEventos" value="${eventList}" />
-							
+						
+							<input type ="hidden" name="user_id" id="user_id" value="${usuarioLogado.id}"/>
 							<div class="input-group">	
 								<input type="text" class="form-control" id="txtEndereco" name="txtEndereco" placeholder="Procurar por...">
 									  			
@@ -56,15 +49,30 @@
 					<div id="sidebar" class="col-md-3">
 						<div class="widget">
 							<br/><p/><br/><p/>
-							<h3>Evento</h3>
+							<h2>Evento</h2>
 							<ul>
 								<li><a href="<%= request.getContextPath() %>/eventMap">Criar evento</a></li>
-								<li><a href="">Parceiro 2</a></li>
+								<c:if test="${!empty usuarioLogado.email}">
+									<li>
+										<form action="<%= request.getContextPath() %>/listEvent">
+												<input type="hidden" name="idUser" value="${usuarioLogado.id}">
+												<button type="submit" class="btn btn-default">
+												Meus Eventos
+											</button>
+										</form>
+									</li> 
+								</c:if>
+
 								<li><a href="">Parceiro 3</a></li>
 								<li><a href="">Parceiro 4</a></li>
 								<li><a href="">Parceiro 5</a></li>
 							</ul>
-						</div>
+						</div><br/>
+						<h2>Legenda</h2>
+						<img class="img-circle" src="resources/img/legenda/violet.png" alt="Generic placeholder image" width="20" height="20"> Festas<br/><br/>
+						<img class="img-circle" src="resources/img/legenda/green.png" alt="Generic placeholder image" width="20" height="20"> Esportes<br/><br/>
+						<img class="img-circle" src="resources/img/legenda/yellow.png" alt="Generic placeholder image" width="20" height="20"> Viagens<br/><br/>
+						<img class="img-circle" src="resources/img/legenda/orange.png" alt="Generic placeholder image" width="20" height="20"> Músicas<br/><br/>
 					</div>
 
 				</div><!-- div row container --><br/>

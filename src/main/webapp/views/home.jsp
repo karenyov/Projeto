@@ -29,8 +29,8 @@
 			  <div class="container">
 				<div class="carousel-caption">
 				  <h1>Divulgue seu evento.</h1>
-				  <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-				  <p><a class="btn btn-lg btn-default" href="<%= request.getContextPath() %>/saibaMais" role="button"><b>L</b>er mais</a></p>
+				  <p>Divulgue, veja e compartilhe! Veja os eventos em sua região.</p>
+				  <p><a class="btn btn-lg btn-default" href="<%= request.getContextPath() %>/event" role="button"><b>L</b>er mais</a></p>
 				</div>
 			  </div>
 			</div>

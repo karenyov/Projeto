@@ -1,13 +1,17 @@
 package br.com.fatec.projeto.controller;
 
-import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +34,9 @@ import br.com.fatec.projeto.model.Event;
  *
  *         30 de ago de 2015
  */
+@SuppressWarnings("serial")
 @Controller
-public class EventController {
+public class EventController extends HttpServlet {
 
 	@Autowired
 	private EventDAO eventDao;
@@ -39,35 +44,61 @@ public class EventController {
 	@Autowired
 	private CategoryDAO categoryDao;
 
-	// escrever no JSON
-	private String saveListJSON(List<Event> eventos) {
-		Gson gson = new Gson();
-		// convertendo o objetov java para o formato JSON
-		String json = gson.toJson(eventos);
-		try {
-			// write converted json data to a file named "CountryGSON.json"
-			// resources/json/listEvent.json
-			FileWriter writer = new FileWriter("G:\\JSON_TG\\listEvent.json");
-			writer.write(json);
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return json;
-	}
+	ModelAndView modelCategory = new ModelAndView("Event/form");
 
 	@RequestMapping(value = "/event", method = RequestMethod.GET)
 	public ModelAndView event() throws Exception {
 
 		ModelAndView model = new ModelAndView("Event/home");
-
-		model.addObject("eventList", null);
 		return model;
 	}
 
 	@RequestMapping("/eventMap")
 	public ModelAndView eventMap() throws Exception {
 		ModelAndView model = new ModelAndView("Event/formMap");
+		return model;
+	}
+	
+	@RequestMapping(value = "/deleteEvent", method = RequestMethod.GET)
+	public ModelAndView deleteEvent(HttpServletRequest request) {
+		int eventId = Integer.parseInt(request.getParameter("id"));
+		eventDao.remove(eventId);
+		return new ModelAndView("redirect:/listEvent");
+	}
+	
+	@RequestMapping(value = "/listEvent", method = RequestMethod.GET)
+	public ModelAndView listEvent(HttpServletRequest request) {
+		List<Event> listEvent = eventDao.findAll();
+		List<Event> listEventUser = new ArrayList<Event>(); 
+		
+		int idUser = Integer.parseInt(request.getParameter("idUser"));
+		
+		for (int i = 0; i < listEvent.size(); i++) {
+			if (listEvent.get(i).getUser_id() == idUser) {
+				listEventUser.add(listEvent.get(i));
+			}
+		}
+		ModelAndView model = new ModelAndView("Event/list");
+		model.addObject("eventList", listEventUser);
+		return model;
+	}
+
+	@RequestMapping("/eventOk")
+	public ModelAndView eventOk() throws Exception {
+		ModelAndView model = new ModelAndView("Event/formOk");
+		return model;
+	}
+	
+	@RequestMapping(value = "/editEvent", method = RequestMethod.GET)
+	public ModelAndView editEvent(HttpServletRequest request) {
+		int eventId = Integer.parseInt(request.getParameter("id"));
+		Event event = eventDao.findById(eventId);
+		
+		List<Category> listCategory = categoryDao.findAll();
+		ModelAndView model = new ModelAndView("Event/form");
+		
+		model.addObject("event", event);
+		model.addObject("categoryList", listCategory);
 		return model;
 	}
 
@@ -78,15 +109,13 @@ public class EventController {
 
 		List<Category> listCategory = categoryDao.findAll();
 
-		ModelAndView model = new ModelAndView("Event/form");
+		modelCategory.addObject("event", new Event());
+		modelCategory.addObject("categoryList", listCategory);
 
-		model.addObject("event", new Event());
-		model.addObject("categoryList", listCategory);
+		modelCategory.addObject("latitude", latitude);
+		modelCategory.addObject("longitude", longitude);
 
-		model.addObject("latitude", latitude);
-		model.addObject("longitude", longitude);
-
-		return model;
+		return modelCategory;
 	}
 
 	@RequestMapping(value = "/saveEvent", method = RequestMethod.POST)
@@ -110,21 +139,53 @@ public class EventController {
 			e.printStackTrace();
 		}
 
-		ModelAndView model = new ModelAndView("Event/form");
+		// ModelAndView model = new ModelAndView("Event/form");
 
 		if (data_inicioDate.after(data_terminoDate)) {
 			// Data de inicio deve vir antes da data de termino
-			model.addObject("erroData1", "sim");
-			return model;
+			modelCategory.addObject("erroData1", "sim");
+			return modelCategory;
 		}
 
 		eventDao.saveOrUpdate(event);
 
-		// atualizando no JSON
-		List<Event> listEvent = eventDao.findAll();
-		saveListJSON(listEvent);
+		return new ModelAndView("redirect:/eventOk");
+	}
 
-		return new ModelAndView("redirect:/");
+	private List<String> events() {
+		List<Event> eventos = eventDao.findAll();
+
+		List<String> strings = new ArrayList<String>();
+
+		for (int i = 0; i < eventos.size(); i++) {
+			int idCategory = Integer.parseInt(eventos.get(i).getCategory());
+			Category category = categoryDao.findById(idCategory);
+
+			DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+			String inicio = fmt.format(eventos.get(i).getData_inicio().getTime());
+
+			String termino = fmt.format(eventos.get(i).getData_termino().getTime());
+
+			strings.add(eventos.get(i).getTitle() + "," + eventos.get(i).getLatitude() + ","
+					+ eventos.get(i).getLongitude() + "," + eventos.get(i).getOption() + "," + category.getDescription()
+					+ "," + eventos.get(i).getDescription() + "," + inicio + "," + termino + ","
+					+ eventos.get(i).getUser_id() +","+ eventos.get(i).getId());
+		}
+
+		return strings;
+	}
+
+	@RequestMapping("/eventJSON")
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+
+		List<String> data = events();
+		Gson gson = new Gson();
+		String json = gson.toJson(data);
+
+		response.getWriter().write(json);
+		response.getWriter().close();
+
 	}
 
 }

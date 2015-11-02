@@ -1,6 +1,11 @@
 var geocoder;
 var map;
 var marker;
+var eventos = [];
+
+var latlngGeoUsurario;
+
+var idUser;
 
 
 /*início código de geolocalização*/
@@ -14,7 +19,6 @@ function GeoLocalizacao() {
 
 function loadXMLDoc() {
 	
-	alert("");
 	var xmlhttp;
 	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp = new XMLHttpRequest();
@@ -25,7 +29,8 @@ function loadXMLDoc() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			//document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
 			var myArr = JSON.parse(xmlhttp.responseText);
-			processList(myArr);
+			
+		    processList(myArr);
 		}
 	}
 	xmlhttp.open("POST", "/fatec/eventJSON", true);
@@ -37,14 +42,96 @@ function loadXMLDoc() {
 function processList(arr) {
 	var out = "";
 	var i;
+
+	//todos os eventos
 	for (i = 0; i < arr.length; i++) {
-		out += arr[i] + "<br />"
+		//cada evento em uma lista
+		var evento = arr[i].split(",");
+		//todos os eventos em uma lista
+		eventos.push(evento);
 	}
-	document.getElementById("myDiv").innerHTML = out;
+	//função que mostra os eventos	
+	mostraEventos(eventos);
 }
+
+var infowindow = new google.maps.InfoWindow({  
+	content: ''
+});
+
+function mostraEventos(eventos) {	
+	for (i = 0; i < eventos.length; i++) { 
+		
+		var conteudo = eventos[i][0];
+		var categoria = eventos[i][4];
+		var descricao = eventos[i][5];
+		var inicio = eventos[i][6];
+		var termino = eventos[i][7];
+		
+		//id do usuário que cadastrou o evento
+		var userEvent = eventos[i][8];
+		
+		var idEvent = eventos[i][9];
+		
+		var compartilhar = "<button type='submit' class='btn btn-primary'>" +
+					"<span class='glyphicon glyphicon-thumbs-up'>" +
+					"</span></button>" +
+					"  " +
+					"<button type='submit' class='btn btn-primary'>" +
+					"<span class='glyphicon glyphicon-share-alt'>" +
+					"</span></button>"
+					;
+		
+		 //evento publico mostrar para todos
+		if(eventos[i][3] == "PUBLICO"){
+			var markerEvent = new google.maps.Marker({
+			   position: new google.maps.LatLng(eventos[i][1], eventos[i][2]),
+			   title: eventos[i][0],
+			   map: map
+			});	
+			
+			(function(markerEvent, conteudo,categoria,descricao,inicio,termino) {
+			    google.maps.event.addListener(markerEvent, 'click', function() {
+			     infowindow.setContent("<b>"+categoria+"</b>"+
+			    		 "<br/>"+conteudo +"<br/>"+ descricao +"<br/>"+
+			    		 "<br/>"+ "<b>Data do evento</b><br/>" +
+			    		 "Data de início: "+inicio +"<br/>"+
+			    		 "Data de término: "+termino+
+			    		 "<br/><br/>" + compartilhar
+			     );
+			     infowindow.open(map, markerEvent);
+			   });
+			})(markerEvent, conteudo,categoria,descricao,inicio,termino);
+//http://www.funcion13.com/google-maps-anadiendo-informacion-marcador-con-infowindows/
+		    
+			if(eventos[i][4] == "Esportes"){
+				markerEvent.setIcon('resources/img/marcadores/green.png');
+			}
+			if(eventos[i][4] == "Festas"){
+				markerEvent.setIcon('resources/img/marcadores/violet.png');
+			}
+			if(eventos[i][4] == "Musicas"){
+				markerEvent.setIcon('resources/img/marcadores/orange.png');
+			}
+			if(eventos[i][4] == "Viagens"){
+				markerEvent.setIcon('resources/img/marcadores/yellow.png');
+			}	
+		}
+		//PRIVADO
+	}	              
+}
+
+
  
 function locSucesso(position) {
+	
+	//chama a função que mostrará os eventos
+	loadXMLDoc();
+	
     var latlngGeo = new google.maps.LatLng(position.coords.latitude,position.coords.longitude); //pegando localização do usuário
+    
+    latlngGeoUsurario = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    
+    
     var myOptions = {//opções do mapa
         zoom: 15, //configuração da proximidade de visualização do mapa quando iniciado
         mapTypeId: google.maps.MapTypeId.ROADMAP, //tipo do mapa (ROADMAP --> normal, default 2D map)
@@ -105,6 +192,7 @@ function erro(error) {//se houver erro na geolocalização mostrar na tela
 
 /*início código de busca apartir do endereço pesquisado*/
 function initialize() {
+	
 	var latlng = new google.maps.LatLng(0, 0);
 	var options = {
 		zoom: 15,
@@ -121,14 +209,13 @@ function initialize() {
 		draggable: true,
 	});
 	marker.setPosition(latlng);
+	
 }
-
-
 
 $(document).ready(function () {
 	GeoLocalizacao();
 	initialize();
-	
+
 	function carregarNoMapa(endereco) {
 		geocoder.geocode({ 'address': endereco + ', Brasil', 'region': 'BR' }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
@@ -215,17 +302,6 @@ $(document).ready(function () {
 			map.setZoom(15);
 		}
 	});
-	
-	
-	
-	/*$("form").submit(function(event) {
-		event.preventDefault();
-		var endereco = $("#txtEndereco").val();
-		var latitude = $("#txtLatitude").val();
-		var longitude = $("#txtLongitude").val();
-		
-		alert("Endereço: " + endereco + "\nLatitude: " + latitude + "\nLongitude: " + longitude);
-	});*/
 });
 
 /*fim código de busca apartir do endereço pesquisado */

@@ -18,7 +18,7 @@
 				<div class="alert alert-success" role="alert">
 					Dados enviados com sucesso!
 				</div>
-				<p><a href="<%= request.getContextPath() %>/loginHome" >&laquo; Voltar </a></p>
+				<p><a href="<%= request.getContextPath() %>/event" >&laquo; Voltar </a></p>
 			</div><!-- div row container -->
 		</div><!-- div container --><br/>
 	<%@ include file="/templates/footer.jsp"%>
