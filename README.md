@@ -2,12 +2,12 @@
 Projeto desenvolvido em JAVA que trata-se de uma aplicação web para divulgar eventos utilizando a Geolocalização do usuário.
 
 ![alt tag](https://github.com/karenyov/Projeto/blob/master/img-project/home.jpg)
-![alt tag](https://github.com/karenyov/Projeto/blob/master/img-project/home1.jpg)
 ![alt tag](https://github.com/karenyov/Projeto/blob/master/img-project/home2.jpg)
+![alt tag](https://github.com/karenyov/Projeto/blob/master/img-project/home3.jpg)
 
 
 # Requisitos:
-* STS Tools
+* STS Tools - [Spring Tool Suite] (https://spring.io/tools).
 
 # Características
 * Utilização de API Google Maps
